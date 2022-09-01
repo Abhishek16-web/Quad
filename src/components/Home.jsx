@@ -1,62 +1,49 @@
 import React from 'react'
-import { useState, useEffect } from 'react';
-import { BrowserRouter as   Route, Link } from "react-router-dom";
-import "../App.css";
+import { BrowserRouter as Route, Link } from "react-router-dom";
+import img1 from "../image/logo.png"
+import img2 from "../image/content.png"
 
-const Home = () => {
-
-const [user, setUser] = useState([])
-
-async function fetchdata (){
-const response = await fetch("https://api.tvmaze.com/search/shows?q=all")
-const json = await response.json();
-setUser(json);
-console.log(json);
-
-}
-useEffect(() => {
-fetchdata();
-
-}, [])
+const Navbar = () => {
+  return (
+    <>
+      <header>
 
 
-return (
-  <>
-  <div className='heading'>
-    <h1>!!! Booy your Tickets Now !!!</h1>
-  </div>
-  
-  <div className="container">
-    {user.map(data => (
-      <div className='item'>
-        <div className='imgbox'>
-          <img src={data.show.image.medium} alt="movie " />
+        <div className='mainheader'>
+          <div class="logo">
+            <img src={img1} alt="img" />
+          </div>
+          <div className='navi'>
+            <nav className='btn'><Link to="/"> Home </Link></nav>
+            <nav className='btn'><Link to="/about"> About </Link></nav>
+            <nav className='btn'><Link to="/services"> Services </Link></nav>
+            <nav className='btn'><Link to="/contact"> Contact </Link></nav>
+          </div>
+          <div className='help'>
+            <button>Helpline</button>
+          </div>
         </div>
-        <div className='info'>
-          <div>
-          Movie Name : {data.show.name}
-          </div>
-          <div>
-          Status : {data.show.status}
-          </div>
-          <div>
-          Duration : {data.show.runtime}
-          </div>
-          <div>
-          Rating : {data.show.rating.average}
-          </div>
-          <div>
-          Language : {data.show.language}
-          </div> 
-        <nav className='btn'><Link to="/book"> Book Now </Link></nav>
-      
-        </div>
-      </div>
-    ))}
-  </div>
-  </>
 
-)
+        <main>
+          <section class="left-sec">
+            <h2> We Are Here For Your Care</h2>
+            <h1>  We The Best Doctors</h1>
+            <p>We are here for your care 24/7. Any help just call us.</p>
+            <h3>  IT Support</h3>
+          </section>
+
+          <section class="right-sec">
+            <figure>
+              <img src={img2} alt="error" />
+            </figure>
+          </section>
+        </main>
+
+
+
+      </header>
+    </>
+  )
 }
 
-export default Home
+export default Navbar
